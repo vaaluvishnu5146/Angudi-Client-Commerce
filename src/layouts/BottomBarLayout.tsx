@@ -4,6 +4,7 @@ import BottomBar from "@/components/BottomBar/BottomBar";
 import Head from "next/head";
 
 type Props = {
+  params: { slug: string };
   children: React.ReactNode;
 };
 

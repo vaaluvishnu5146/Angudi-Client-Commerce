@@ -3,10 +3,34 @@ import React from "react";
 import { FiHome, FiGift, FiUser, FiShoppingCart } from "react-icons/fi";
 import { Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { usePathname, useSearchParams } from "next/navigation";
+
+const routes = [
+  {
+    name: "Restaurant",
+    path: "/restaurant/2",
+    icon: FiHome,
+  },
+  {
+    name: "Play",
+    path: "/play",
+    icon: FiGift,
+  },
+  {
+    name: "Account",
+    path: "/account/2",
+    icon: FiUser,
+  },
+  {
+    name: "Cart",
+    path: "/cart",
+    icon: FiShoppingCart,
+  },
+];
 
 export default function BottomBar() {
-  const router = useRouter();
-  console.log(router);
+  const pathname = usePathname();
+
   return (
     <Box
       w="100%"
@@ -20,63 +44,25 @@ export default function BottomBar() {
       alignItems={"center"}
       justifyContent={"space-around"}
     >
-      <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
-        <Link href={"/restaurant/2"}>
-          <FiHome
-            style={{
-              fontSize: "1.4rem",
-            }}
-          />
-        </Link>
-      </Box>
-      <Box
-        padding={"12px"}
-        borderRadius={"10px"}
-        bg={router.pathname === "/play" ? "white" : ""}
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
-        <Link href={"/play"}>
-          <FiGift
-            style={{
-              fontSize: "1.4rem",
-            }}
-          />
-        </Link>
-      </Box>
-      <Box
-        padding={"12px"}
-        borderRadius={"10px"}
-        bg={router.asPath === "/account/2" ? "white" : ""}
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
-        <Link href="/account/2">
-          <FiUser
-            style={{
-              fontSize: "1.4rem",
-            }}
-          />
-        </Link>
-      </Box>
-      <Box
-        padding={"12px"}
-        borderRadius={"10px"}
-        bg={router.pathname === "/cart" ? "white" : ""}
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
-        <Link href="/cart">
-          <FiShoppingCart
-            style={{
-              fontSize: "1.4rem",
-            }}
-          />
-        </Link>
-      </Box>
+      {routes.map((route, index) => (
+        <Box
+          padding={"12px"}
+          borderRadius={"10px"}
+          bg={pathname === route.path ? "white" : ""}
+          key={index}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Link href={route.path}>
+            <route.icon
+              style={{
+                fontSize: "1.4rem",
+              }}
+            />
+          </Link>
+        </Box>
+      ))}
     </Box>
   );
 }

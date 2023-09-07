@@ -8,8 +8,11 @@ import ScrollableLists from "@/components/Lists/ScrollableLists";
 import AppBar from "@/components/AppBar/AppBar";
 import { FiMenu, FiBell } from "react-icons/fi";
 import SearchInput from "@/elements/TextField/SearchInput";
+import { useParams } from "next/navigation";
 
 function ServiceDetails() {
+  const params = useParams();
+  console.log("PARAMS", params);
   return (
     <>
       <Head>
