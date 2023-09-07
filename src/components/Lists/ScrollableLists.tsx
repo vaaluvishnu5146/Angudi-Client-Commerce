@@ -70,7 +70,7 @@ export default function ScrollableLists({ heading = "", data = [] }: Props) {
                     size={"sm"}
                     variant={"solid"}
                     bg={"green.200"}
-                    label="Added To Cart"
+                    label="Added"
                     onClick={() => {}}
                     disabled={false}
                     leftIcon={<FiPlus />}

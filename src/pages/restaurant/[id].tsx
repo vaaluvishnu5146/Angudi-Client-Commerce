@@ -2,12 +2,12 @@ import BottomBarLayout from "@/layouts/BottomBarLayout";
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import CategorySlider from "@/components/ContentSlider/CategorySlider";
-import SearchInput from "@/elements/TextField/SearchInput";
 import Head from "next/head";
 import ServicesSlider from "@/components/ContentSlider/ServicesSlider";
 import ScrollableLists from "@/components/Lists/ScrollableLists";
 import AppBar from "@/components/AppBar/AppBar";
 import { FiMenu, FiBell } from "react-icons/fi";
+import SearchInput from "@/elements/TextField/SearchInput";
 
 function ServiceDetails() {
   return (
@@ -59,6 +59,10 @@ function ServiceDetails() {
               { name: "x" },
             ]}
           />
+        </Box>
+        <Box height={5}></Box>
+        <Box padding={"0 15px"} boxSizing="border-box">
+          <SearchInput placeholder="Search your Favourite Food" />
         </Box>
         <Box height={5}></Box>
         <Box padding={"0 15px"} boxSizing="border-box">

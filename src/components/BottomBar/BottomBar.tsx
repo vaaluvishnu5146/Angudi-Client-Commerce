@@ -1,8 +1,12 @@
-import { Box } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
-import { FiHome, FiGift, FiUser } from "react-icons/fi";
+import { FiHome, FiGift, FiUser, FiShoppingCart } from "react-icons/fi";
+import { Box } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 export default function BottomBar() {
+  const router = useRouter();
+  console.log(router);
   return (
     <Box
       w="100%"
@@ -14,43 +18,64 @@ export default function BottomBar() {
       height={"60px"}
       display={"flex"}
       alignItems={"center"}
-      justifyContent={"space-between"}
+      justifyContent={"space-around"}
     >
-      <Box
-        width={"30%"}
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
-        <FiHome
-          style={{
-            fontSize: "1.4rem",
-          }}
-        />
+      <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+        <Link href={"/restaurant/2"}>
+          <FiHome
+            style={{
+              fontSize: "1.4rem",
+            }}
+          />
+        </Link>
       </Box>
       <Box
-        width={"30%"}
+        padding={"12px"}
+        borderRadius={"10px"}
+        bg={router.pathname === "/play" ? "white" : ""}
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <FiGift
-          style={{
-            fontSize: "1.4rem",
-          }}
-        />
+        <Link href={"/play"}>
+          <FiGift
+            style={{
+              fontSize: "1.4rem",
+            }}
+          />
+        </Link>
       </Box>
       <Box
-        width={"30%"}
+        padding={"12px"}
+        borderRadius={"10px"}
+        bg={router.asPath === "/account/2" ? "white" : ""}
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <FiUser
-          style={{
-            fontSize: "1.4rem",
-          }}
-        />
+        <Link href="/account/2">
+          <FiUser
+            style={{
+              fontSize: "1.4rem",
+            }}
+          />
+        </Link>
+      </Box>
+      <Box
+        padding={"12px"}
+        borderRadius={"10px"}
+        bg={router.pathname === "/cart" ? "white" : ""}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <Link href="/cart">
+          <FiShoppingCart
+            style={{
+              fontSize: "1.4rem",
+            }}
+          />
+        </Link>
       </Box>
     </Box>
   );
