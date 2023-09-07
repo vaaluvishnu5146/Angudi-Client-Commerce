@@ -1,6 +1,8 @@
 import React from "react";
 import { Box, Text, List, ListItem, Flex, Button } from "@chakra-ui/react";
 import Image from "next/image";
+import SmartCta from "@/elements/Button/Button";
+import { FiPlus } from "react-icons/fi";
 
 type Props = {
   heading: string;
@@ -24,7 +26,7 @@ export default function ScrollableLists({ heading = "", data = [] }: Props) {
             borderRadius={10}
           >
             <Flex height={"100%"} padding={"10px"} boxSizing="border-box">
-              <Box width={"20%"} height={"100px"} position={"relative"}>
+              <Box width={"25%"} height={"100px"} position={"relative"}>
                 <Image
                   style={{ borderRadius: 10 }}
                   //   width={90}
@@ -38,7 +40,7 @@ export default function ScrollableLists({ heading = "", data = [] }: Props) {
                 />
               </Box>
               <Box width={"5%"}></Box>
-              <Box width={"75%"}>
+              <Box width={"70%"}>
                 <Text fontSize="lg" fontWeight={"500"}>
                   Chicken Biriyani
                 </Text>
@@ -61,12 +63,18 @@ export default function ScrollableLists({ heading = "", data = [] }: Props) {
                       fontWeight={"500"}
                       letterSpacing={"1px"}
                     >
-                      299
+                      ₹299
                     </Text>
                   </Box>
-                  <Button size={"sm"} variant={"solid"} bg={"green.200"}>
-                    Add To Order
-                  </Button>
+                  <SmartCta
+                    size={"sm"}
+                    variant={"solid"}
+                    bg={"green.200"}
+                    label="Added To Cart"
+                    onClick={() => {}}
+                    disabled={false}
+                    leftIcon={<FiPlus />}
+                  />
                 </Flex>
               </Box>
             </Flex>

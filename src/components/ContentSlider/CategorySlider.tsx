@@ -46,7 +46,7 @@ export default function CategorySlider() {
         marginBottom={"10px"}
         padding={"0 15px"}
       >
-        Select Category!
+        Select Category
       </Text>
       <Flex
         className="scroll-container"
