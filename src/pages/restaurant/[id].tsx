@@ -46,18 +46,25 @@ function ServiceDetails() {
         >
           <ServicesSlider
             heading="Today Special"
-            data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
+            data={[
+              { name: "x" },
+              { name: "x" },
+              { name: "x" },
+              { name: "x" },
+              { name: "x" },
+              { name: "x" },
+              { name: "x" },
+              { name: "x" },
+              { name: "x" },
+              { name: "x" },
+            ]}
           />
-        </Box>
-        <Box height={5}></Box>
-        <Box paddingInline={"15px"} boxSizing="border-box">
-          <SearchInput placeholder="Search Food items from Restaurant" />
         </Box>
         <Box height={5}></Box>
         <Box padding={"0 15px"} boxSizing="border-box">
           <ScrollableLists
             heading="Today Menu"
-            data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
+            data={["", "", "", "", "", "", "", "", "", ""]}
           />
         </Box>
       </Box>

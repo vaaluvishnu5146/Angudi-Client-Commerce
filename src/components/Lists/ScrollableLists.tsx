@@ -4,7 +4,7 @@ import Image from "next/image";
 
 type Props = {
   heading: string;
-  data: Array<string>;
+  data: string[];
 };
 
 export default function ScrollableLists({ heading = "", data = [] }: Props) {
