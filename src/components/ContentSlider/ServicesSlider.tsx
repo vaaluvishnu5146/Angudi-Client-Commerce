@@ -26,11 +26,11 @@ export default function ServicesSlider({ heading = "", data }: Props) {
             key={i}
             minWidth={"150px"}
             borderRadius={10}
-            height={"150px"}
+            height={"180px"}
             bg={"blackAlpha.50"}
             padding={"5px"}
           >
-            <Box width={"100%"} height={"100px"} position={"relative"}>
+            <Box width={"100%"} height={"80px"} position={"relative"}>
               <Image
                 style={{ borderRadius: 10 }}
                 layout="fill"
@@ -39,6 +39,13 @@ export default function ServicesSlider({ heading = "", data }: Props) {
                 alt="food"
               />
             </Box>
+            <Box height={"5px"}></Box>
+            <Text fontSize={"sm"} fontWeight={"500"}>
+              {d.name}
+            </Text>
+            <Text fontSize={"sm"} fontWeight={"500"}>
+              {d.foodType}
+            </Text>
           </Box>
         ))}
       </Flex>

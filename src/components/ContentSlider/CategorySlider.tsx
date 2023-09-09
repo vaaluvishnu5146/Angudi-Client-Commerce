@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { Flex, Box, Text } from "@chakra-ui/react";
+import { Categories } from "@/Interfaces";
 
 type Props = {
-  data: Array<{
-    name: string;
-  }>;
+  data: Array<Categories>;
   selected: string;
   handleSelect: (d: string) => void;
 };
 
 export default function CategorySlider({
-  data = [{ name: "All" }],
+  data = [],
   selected = "All",
   handleSelect,
 }: Props) {

@@ -9,42 +9,36 @@ import ScrollableLists from "@/components/Lists/ScrollableLists";
 import AppBar from "@/components/AppBar/AppBar";
 import { FiMenu, FiBell } from "react-icons/fi";
 import SearchInput from "@/elements/TextField/SearchInput";
-import { useParams, useSearchParams } from "next/navigation";
 import { foodType } from "@/Interfaces";
 
 export const getServerSideProps: GetServerSideProps<{
   result: any;
 }> = async () => {
-  console.log(process.env);
-  const response = await fetch(`${process.env.BASE_PATH_FRONTEND}/api/food`);
-  const result = await response.json();
-  return { props: { result } };
+  const responses = await Promise.all([
+    await fetch(`${process.env.BASE_PATH_FRONTEND}/api/food`),
+    await fetch(`${process.env.BASE_PATH_FRONTEND}/api/categories`),
+  ]);
+  const food = await responses[0].json();
+  const categories = await responses[1].json();
+  return {
+    props: {
+      result: {
+        foodData: food,
+        categoriesData: categories,
+      },
+    },
+  };
 };
 
 function ServiceDetails(props: any) {
   const { result } = props;
+  const { foodData, categoriesData } = result;
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([
-    { name: "All" },
-    {
-      id: "11",
-      image: "",
-      name: "Biriyani",
-    },
-    { name: "Pizza" },
-    { name: "Burger" },
-    { name: "Milk Shakes" },
-    { name: "Mojito" },
-  ]);
   const [categorySelected, setSelectedCategory] = useState("All");
 
   useEffect(() => {
-    setProducts(result);
-  }, [result]);
-
-  useEffect(() => {
-    console.log(categorySelected);
-  }, [categorySelected]);
+    setProducts(foodData);
+  }, [foodData, categoriesData]);
 
   return (
     <>
@@ -78,7 +72,7 @@ function ServiceDetails(props: any) {
         </Box>
         <Box height={"20px"}></Box>
         <CategorySlider
-          data={categories}
+          data={categoriesData}
           selected={categorySelected}
           handleSelect={setSelectedCategory}
         />
