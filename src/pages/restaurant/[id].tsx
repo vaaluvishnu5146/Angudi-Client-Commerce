@@ -1,18 +1,29 @@
-import BottomBarLayout from "@/layouts/BottomBarLayout";
 import React from "react";
-import { Box } from "@chakra-ui/react";
-import CategorySlider from "@/components/ContentSlider/CategorySlider";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
+import { Box } from "@chakra-ui/react";
+import BottomBarLayout from "@/layouts/BottomBarLayout";
+import CategorySlider from "@/components/ContentSlider/CategorySlider";
 import ServicesSlider from "@/components/ContentSlider/ServicesSlider";
 import ScrollableLists from "@/components/Lists/ScrollableLists";
 import AppBar from "@/components/AppBar/AppBar";
 import { FiMenu, FiBell } from "react-icons/fi";
 import SearchInput from "@/elements/TextField/SearchInput";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
+import { foodType } from "@/Interfaces";
 
-function ServiceDetails() {
+export const getServerSideProps: GetServerSideProps<{
+  result: any;
+}> = async () => {
+  const response = await fetch("http://localhost:3000/api/food?id=1");
+  const result = await response.json();
+  return { props: { result } };
+};
+
+function ServiceDetails(props: any) {
+  const { result } = props;
   const params = useParams();
-  console.log("PARAMS", params);
+  console.log(params);
   return (
     <>
       <Head>
@@ -49,18 +60,7 @@ function ServiceDetails() {
         >
           <ServicesSlider
             heading="Today Special"
-            data={[
-              { name: "x" },
-              { name: "x" },
-              { name: "x" },
-              { name: "x" },
-              { name: "x" },
-              { name: "x" },
-              { name: "x" },
-              { name: "x" },
-              { name: "x" },
-              { name: "x" },
-            ]}
+            data={result.filter((d: foodType) => d.isSpecial)}
           />
         </Box>
         <Box height={5}></Box>
@@ -69,10 +69,7 @@ function ServiceDetails() {
         </Box>
         <Box height={5}></Box>
         <Box padding={"0 15px"} boxSizing="border-box">
-          <ScrollableLists
-            heading="Today Menu"
-            data={["", "", "", "", "", "", "", "", "", ""]}
-          />
+          <ScrollableLists heading="Today Menu" data={result} />
         </Box>
       </Box>
     </>

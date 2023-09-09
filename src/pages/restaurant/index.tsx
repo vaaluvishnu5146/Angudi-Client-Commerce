@@ -1,8 +1,7 @@
-import BottomBar from "@/components/BottomBar/BottomBar";
-import BottomBarLayout from "@/layouts/BottomBarLayout";
-import { Box } from "@chakra-ui/react";
-import Head from "next/head";
 import React from "react";
+import Head from "next/head";
+import { Box } from "@chakra-ui/react";
+import BottomBarLayout from "@/layouts/BottomBarLayout";
 
 function Restaurant() {
   return (

@@ -1,17 +1,14 @@
 import React from "react";
 import { Flex, Box, Text } from "@chakra-ui/react";
 import Image from "next/image";
-
-type data = {
-  name: string;
-};
+import { foodType } from "@/Interfaces";
 
 type Props = {
   heading: string;
-  data: data[];
+  data: Array<foodType>;
 };
 
-export default function ServicesSlider({ heading = "", data = [] }: Props) {
+export default function ServicesSlider({ heading = "", data }: Props) {
   return (
     <Box>
       <Text fontSize="xl" fontWeight={"500"} marginBottom={"10px"}>
@@ -24,7 +21,7 @@ export default function ServicesSlider({ heading = "", data = [] }: Props) {
         columnGap={"15px"}
         overflowY={"scroll"}
       >
-        {data.map((d: data, i: number) => (
+        {data.map((d: foodType, i: number) => (
           <Box
             key={i}
             minWidth={"150px"}
@@ -38,9 +35,7 @@ export default function ServicesSlider({ heading = "", data = [] }: Props) {
                 style={{ borderRadius: 10 }}
                 layout="fill"
                 objectFit="cover"
-                src={
-                  "https://images.unsplash.com/photo-1631628150639-3a7c90a22ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHx8&w=1000&q=80"
-                }
+                src={d.image}
                 alt="food"
               />
             </Box>

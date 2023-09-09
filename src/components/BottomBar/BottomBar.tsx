@@ -2,34 +2,35 @@ import Link from "next/link";
 import React from "react";
 import { FiHome, FiGift, FiUser, FiShoppingCart } from "react-icons/fi";
 import { Box } from "@chakra-ui/react";
+import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
-import { usePathname, useSearchParams } from "next/navigation";
-
-const routes = [
-  {
-    name: "Restaurant",
-    path: "/restaurant/2",
-    icon: FiHome,
-  },
-  {
-    name: "Play",
-    path: "/play",
-    icon: FiGift,
-  },
-  {
-    name: "Account",
-    path: "/account/2",
-    icon: FiUser,
-  },
-  {
-    name: "Cart",
-    path: "/cart",
-    icon: FiShoppingCart,
-  },
-];
 
 export default function BottomBar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const routes = [
+    {
+      name: "Restaurant",
+      path: `/restaurant/${router.query.id}`,
+      icon: FiHome,
+    },
+    {
+      name: "Play",
+      path: "/play",
+      icon: FiGift,
+    },
+    {
+      name: "Account",
+      path: `/account/${router.query.id}`,
+      icon: FiUser,
+    },
+    {
+      name: "Cart",
+      path: "/cart",
+      icon: FiShoppingCart,
+    },
+  ];
 
   return (
     <Box
