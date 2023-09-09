@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { Box } from "@chakra-ui/react";
@@ -15,15 +15,37 @@ import { foodType } from "@/Interfaces";
 export const getServerSideProps: GetServerSideProps<{
   result: any;
 }> = async () => {
-  const response = await fetch("http://localhost:3000/api/food?id=1");
+  console.log(process.env);
+  const response = await fetch(`${process.env.BASE_PATH_FRONTEND}/api/food`);
   const result = await response.json();
   return { props: { result } };
 };
 
 function ServiceDetails(props: any) {
   const { result } = props;
-  const params = useParams();
-  console.log(params);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([
+    { name: "All" },
+    {
+      id: "11",
+      image: "",
+      name: "Biriyani",
+    },
+    { name: "Pizza" },
+    { name: "Burger" },
+    { name: "Milk Shakes" },
+    { name: "Mojito" },
+  ]);
+  const [categorySelected, setSelectedCategory] = useState("All");
+
+  useEffect(() => {
+    setProducts(result);
+  }, [result]);
+
+  useEffect(() => {
+    console.log(categorySelected);
+  }, [categorySelected]);
+
   return (
     <>
       <Head>
@@ -51,7 +73,11 @@ function ServiceDetails(props: any) {
           }
         />
         <Box height={10}></Box>
-        <CategorySlider />
+        <CategorySlider
+          data={categories}
+          selected={categorySelected}
+          handleSelect={setSelectedCategory}
+        />
         <Box height={5}></Box>
         <Box
           id="today-special"
@@ -60,7 +86,7 @@ function ServiceDetails(props: any) {
         >
           <ServicesSlider
             heading="Today Special"
-            data={result.filter((d: foodType) => d.isSpecial)}
+            data={products.filter((d: foodType) => d.isSpecial)}
           />
         </Box>
         <Box height={5}></Box>
@@ -69,7 +95,16 @@ function ServiceDetails(props: any) {
         </Box>
         <Box height={5}></Box>
         <Box padding={"0 15px"} boxSizing="border-box">
-          <ScrollableLists heading="Today Menu" data={result} />
+          <ScrollableLists
+            heading="Today Menu"
+            data={
+              categorySelected === "All"
+                ? products
+                : products.filter(
+                    (d: foodType) => d.foodCategory.name === categorySelected
+                  )
+            }
+          />
         </Box>
       </Box>
     </>

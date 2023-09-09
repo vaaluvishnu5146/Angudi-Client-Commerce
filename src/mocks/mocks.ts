@@ -5,6 +5,11 @@ export const categories = [
     name: "All",
   },
   {
+    id: "11",
+    image: "",
+    name: "Biriyani",
+  },
+  {
     id: "2",
     image: "",
     name: "Breakfast",

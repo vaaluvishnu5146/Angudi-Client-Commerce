@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Flex, Box, Text } from "@chakra-ui/react";
 
-export default function CategorySlider() {
-  const data: Array<{ name: string }> = [
-    { name: "All" },
-    { name: "Pizza" },
-    { name: "Burger" },
-    { name: "Milk Shakes" },
-    { name: "Mojito" },
-  ];
-  const [categorySelected, setSelectedCategory] = useState("All");
+type Props = {
+  data: Array<{
+    name: string;
+  }>;
+  selected: string;
+  handleSelect: (d: string) => void;
+};
 
+export default function CategorySlider({
+  data = [{ name: "All" }],
+  selected = "All",
+  handleSelect,
+}: Props) {
   const getCategories = (data: Array<{ name: string }>) => {
     return data.map((d, i) => (
       <Box
@@ -18,9 +21,9 @@ export default function CategorySlider() {
         minWidth={d.name === "All" ? 50 : 120}
         borderRadius={d.name === "All" ? "100%" : 10}
         height={50}
-        bg={categorySelected === d.name ? "green.200" : "blackAlpha.50"}
+        bg={selected === d.name ? "green.200" : "blackAlpha.50"}
         cursor={"pointer"}
-        onClick={() => setSelectedCategory(d.name)}
+        onClick={() => handleSelect(d.name)}
       >
         <Flex
           width={"100%"}
