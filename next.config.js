@@ -6,6 +6,7 @@ const nextConfig = {
       "images.unsplash.com",
       "media-assets.swiggy.com",
       "images.dominos.co.in",
+      "png.pngtree.com",
     ],
   },
 };

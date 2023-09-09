@@ -72,7 +72,11 @@ function ServiceDetails(props: any) {
             />
           }
         />
-        <Box height={10}></Box>
+        <Box height={"5px"}></Box>
+        <Box padding={"0 15px"} boxSizing="border-box">
+          <SearchInput placeholder="Search your Favourite Food" />
+        </Box>
+        <Box height={"20px"}></Box>
         <CategorySlider
           data={categories}
           selected={categorySelected}
@@ -89,11 +93,7 @@ function ServiceDetails(props: any) {
             data={products.filter((d: foodType) => d.isSpecial)}
           />
         </Box>
-        <Box height={5}></Box>
-        <Box padding={"0 15px"} boxSizing="border-box">
-          <SearchInput placeholder="Search your Favourite Food" />
-        </Box>
-        <Box height={5}></Box>
+        <Box height={"15px"}></Box>
         <Box padding={"0 15px"} boxSizing="border-box">
           <ScrollableLists
             heading="Today Menu"
